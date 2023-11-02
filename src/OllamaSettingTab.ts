@@ -29,6 +29,19 @@ export class OllamaSettingTab extends PluginSettingTab {
           })
       );
 
+    new Setting(containerEl)
+      .setName("default model")
+      .setDesc("Name of the default ollama model to use for prompts")
+      .addText((text) =>
+        text
+          .setPlaceholder("llama2")
+          .setValue(this.plugin.settings.defaultModel)
+          .onChange(async (value) => {
+            this.plugin.settings.defaultModel = value;
+            await this.plugin.saveSettings();
+          })
+      );
+
     containerEl.createEl("h3", { text: "Commands" });
 
     const newCommand: OllamaCommand = {
