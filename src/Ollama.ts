@@ -31,7 +31,7 @@ export class Ollama extends Plugin {
             url: `${this.settings.ollamaUrl}/api/generate`,
             body: JSON.stringify({
               prompt: command.prompt + "\n\n" + text,
-              model: command.model,
+              model: command.model || this.settings.defaultModel,
               options: {
                 temperature: command.temperature || 0.2,
               },
