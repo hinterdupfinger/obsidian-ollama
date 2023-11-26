@@ -1,7 +1,7 @@
 {
-  "name": "obsidian-ollama",
+  "name": "obsidian-ollama-chat",
   "version": "0.0.1",
-  "description": "This is a Ollama (https://ollama.ai) plugin for Obsidian (https://obsidian.md)",
+  "description": "This is a Ollama Chat (https://ollama.ai) plugin for Obsidian (https://obsidian.md)",
   "main": "main.js",
   "scripts": {
     "dev": "node esbuild.config.mjs",
@@ -13,9 +13,10 @@
     "ollama",
     "ai",
     "plugin",
-    "llama"
+    "llama",
+    "chat"
   ],
-  "author": "hinterdupfinger",
+  "author": "brumik",
   "license": "MIT",
   "devDependencies": {
     "@types/node": "20.6.2",

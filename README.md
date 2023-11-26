@@ -1,17 +1,26 @@
-# 🦙 Obsidian Ollama
+# 🦙 Obsidian Ollama Chat
 
-This is a plugin for [Obsidian](https://obsidian.md) that allows you to use [Ollama](https://ollama.ai) within your notes.
-There are different pre configured promts:
+This plugin allows you to ask your local LLM about your own notes.
 
-    - Summarize selection
-    - Explain selection
-    - Expand selection
-    - Rewrite selection (formal)
-    - Rewrite selection (casual)
-    - Rewrite selection (active voice)
-    - Rewrite selection (bullet points)
-    - Caption selection
+## Requirements:
 
-But you can also configure your own prompts, specify their model and temperature. The plugin always passes the prompt and either selected text or full note to Ollama and inserts the result into your note at the cursor position.
+Indexing is slow and hard to do in JS. Therefore you will need to run a lightweight
+python server to do the indexing for you next to your ollama.
 
-This requires a local installation of [Ollama](https://ollama.ai) which can currently be installed as a [MacOS app](https://github.com/jmorganca/ollama#download). By default the plugin will connect to `http://localhost:11434` - the port of the MacOS app.
+TODO
+
+## Features:
+
+- Run your own model locally. Set the URL to this model and you roll
+- Index your files on startup and on file modification
+- Open a modal by shortcut or command to ask your question
+
+## Future plans:
+
+- Text streaming when queriing to the LLM
+- Chat window for chat style communication insdead of query.
+- Add commands for useful queries to quick ask them like:
+	- Summarize note
+	- Summarize topic
+
+Any feature recommendation is welcome. 
