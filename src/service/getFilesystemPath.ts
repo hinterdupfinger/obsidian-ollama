@@ -5,5 +5,5 @@ export const getFilesystemPath = (path: string = '/') => {
   if (adapter instanceof FileSystemAdapter) {
       return adapter.getBasePath() + path
   }
-  return null;
+  return '';
 }

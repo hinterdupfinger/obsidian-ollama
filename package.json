@@ -1,6 +1,6 @@
 {
   "name": "obsidian-ollama-chat",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "This is a Ollama Chat (https://ollama.ai) plugin for Obsidian (https://obsidian.md)",
   "main": "main.js",
   "scripts": {

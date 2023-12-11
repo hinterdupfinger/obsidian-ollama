@@ -1,7 +1,7 @@
 {
   "id": "ollama-chat",
   "name": "Ollama Chat",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "minAppVersion": "0.15.0",
   "description": "This is a plugin for Obsidian that enables chatting with your notes with the help of Ollama.",
   "author": "brumik",

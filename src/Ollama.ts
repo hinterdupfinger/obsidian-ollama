@@ -1,4 +1,4 @@
-import { Notice, Plugin, requestUrl } from "obsidian";
+import { Notice, Plugin, TAbstractFile, requestUrl } from "obsidian";
 import { OllamaSettingTab } from "OllamaSettingTab";
 import { DEFAULT_SETTINGS } from "data/defaultSettings";
 import { OllamaSettings } from "model/OllamaSettings";
@@ -14,14 +14,15 @@ export class Ollama extends Plugin {
     this.registerEvents()
     this.addPromptCommands();
     this.addSettingTab(new OllamaSettingTab(this.app, this));
- }
-
+  }
 
   private registerEvents() {
-    // this.registerEvent(this.app.vault.on('create', this.createEvent))
-    // this.registerEvent(this.app.vault.on('delete', this.deleteEvent))
-    // this.registerEvent(this.app.vault.on('modify', this.modifyEvent))
-    // this.registerEvent(this.app.vault.on('rename', this.renameEvent))
+    this.app.workspace.onLayoutReady(() => {
+      this.registerEvent(this.app.vault.on('create', this.createEvent));
+      this.registerEvent(this.app.vault.on('delete', this.deleteEvent));
+      this.registerEvent(this.app.vault.on('modify', this.modifyEvent));
+      this.registerEvent(this.app.vault.on('rename', this.renameEvent));
+    });   
   }
 
   private addPromptCommands() {
@@ -44,20 +45,43 @@ export class Ollama extends Plugin {
     await this.saveData(this.settings);
   }
 
-  async runStartupIndexing() {
+  private async requestIndexing(method: 'POST' | 'PATCH' | 'DELETE', filePath: string) {
     requestUrl({
-      method: "POST",
+      method,
       headers: {
         "Content-Type": "application/json",
       },
       url: `${this.settings.llamaIndexUrl}/indexing`,
       body: JSON.stringify({
-        path: getFilesystemPath()
+        path: filePath
       })
     })
     .then(response => new Notice(`Ollama indexing: ${response.text}`))
     .catch((error) => {
       new Notice(`Error while indexing the store ${error}`);
     })
+ 
   }
+
+  private async runStartupIndexing() {
+    this.requestIndexing("POST", getFilesystemPath());
+  }
+
+  private async createEvent(file: TAbstractFile) {
+    this.requestIndexing("PATCH", getFilesystemPath(file.path));
+  }
+
+ private async deleteEvent(file: TAbstractFile) {
+    this.requestIndexing("DELETE", getFilesystemPath(file.path));
+  }
+
+ private async modifyEvent(file: TAbstractFile) {
+    this.requestIndexing("PATCH", getFilesystemPath(file.path));
+  }
+
+ private async renameEvent(file: TAbstractFile, oldPath: string) {
+    this.requestIndexing("PATCH", getFilesystemPath(file.path));
+    this.requestIndexing("DELETE", getFilesystemPath(oldPath));
+  }
+
 }
