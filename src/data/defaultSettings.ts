@@ -44,5 +44,10 @@ export const DEFAULT_SETTINGS: OllamaSettings = {
       prompt:
         "Act as a writer. Create only one single heading for the whole text that is giving a good understanding of what the reader can expect. Output only the caption and nothing else, do not chat, no preamble, get to the point. Your format should be ## Caption.",
     },
+    {
+      name: "Translate selection to English",
+      prompt:
+        "Act as a translator. Translate the text in English. Output only the text and nothing else, do not chat, no preamble, get to the point.",
+    },
   ],
 };

@@ -11,6 +11,7 @@ There are different pre configured promts:
     - Rewrite selection (active voice)
     - Rewrite selection (bullet points)
     - Caption selection
+    - Translate selection to English
 
 But you can also configure your own prompts, specify their model and temperature. The plugin always passes the prompt and either selected text or full note to Ollama and inserts the result into your note at the cursor position.
 
