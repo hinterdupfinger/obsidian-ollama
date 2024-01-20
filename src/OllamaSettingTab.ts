@@ -79,6 +79,7 @@ export class OllamaSettingTab extends PluginSettingTab {
     new Setting(containerEl)
       .setName("New command temperature")
       .addSlider((slider) => {
+        slider.setDynamicTooltip();
         slider.setLimits(0, 1, 0.01);
         slider.setValue(0.2);
         slider.onChange(async (value) => {
