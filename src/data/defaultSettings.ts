@@ -7,7 +7,7 @@ export const DEFAULT_SETTINGS: OllamaSettings = {
     {
       name: "Summarize selection",
       prompt:
-        "Act as a writer. Summarize the text in a view sentences highlighting the key takeaways. Output only the text and nothing else, do not chat, no preamble, get to the point.",
+        "Act as a writer. Summarize the text in a few sentences highlighting the key takeaways. Output only the text and nothing else, do not chat, no preamble, get to the point.",
     },
     {
       name: "Explain selection",
