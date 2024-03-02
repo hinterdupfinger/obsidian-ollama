@@ -42,6 +42,43 @@ export class OllamaSettingTab extends PluginSettingTab {
           })
       );
 
+    new Setting(containerEl)
+      .setName("context local links")
+      .setDesc("Use local links as context for the model")
+      .addToggle((toggle) =>
+        toggle
+          .setValue(this.plugin.settings.contextLocalLinks)
+          .onChange(async (value) => {
+            this.plugin.settings.contextLocalLinks = value;
+            await this.plugin.saveSettings();
+          })
+      );
+
+    new Setting(containerEl)
+      .setName("context remote links")
+      .setDesc("Use remote links as context for the model")
+      .addToggle((toggle) =>
+        toggle
+          .setValue(this.plugin.settings.contextRemoteLinks)
+          .onChange(async (value) => {
+            this.plugin.settings.contextRemoteLinks = value;
+            await this.plugin.saveSettings();
+          })
+      );
+
+      new Setting(containerEl)
+      .setName("context prompt")
+      .setDesc("Prompt used to build context from links")
+      .addText((text) =>
+        text
+          .setPlaceholder("Act as a writer. Summarize the text in a view sentences highlighting the key takeaways. Output only the text and nothing else, do not chat, no preamble, get to the point.")
+          .setValue(this.plugin.settings.defaultContextPrompt)
+          .onChange(async (value) => {
+            this.plugin.settings.defaultContextPrompt = value;
+            await this.plugin.saveSettings();
+          })
+      );
+
     containerEl.createEl("h3", { text: "Commands" });
 
     const newCommand: OllamaCommand = {
