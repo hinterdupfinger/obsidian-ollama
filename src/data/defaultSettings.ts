@@ -3,6 +3,9 @@ import { OllamaSettings } from "model/OllamaSettings";
 export const DEFAULT_SETTINGS: OllamaSettings = {
   ollamaUrl: "http://localhost:11434",
   defaultModel: "llama2",
+  contextLocalLinks: true,
+  contextRemoteLinks: false,
+  defaultContextPrompt: "Act as a writer. Summarize the text in a view sentences highlighting the key takeaways. Output only the text and nothing else, do not chat, no preamble, get to the point.",
   commands: [
     {
       name: "Summarize selection",
